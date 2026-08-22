@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 firebase_credentials.json
 .env
 .env.local
+
+firebase_credentials.json
+__pycache__/
