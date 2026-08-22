@@ -73,7 +73,6 @@ def main():
         try:
             run_once()
         except Exception:
-            # Absolute backstop: never let the loop die during the demo.
             print("Unexpected error in main loop:")
             traceback.print_exc()
         time.sleep(READ_INTERVAL_SECONDS)
