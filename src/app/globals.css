@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/* ─── Theme: Material Design 3 Palette ─────────────────────────── */
+
+@theme {
+  /* Primary */
+  --color-primary: #56642b;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #8a9a5b;
+  --color-on-primary-container: #253000;
+  --color-primary-fixed: #d9eaa3;
+  --color-primary-fixed-dim: #bdce89;
+  --color-on-primary-fixed: #161f00;
+  --color-on-primary-fixed-variant: #3e4c16;
+
+  /* Secondary */
+  --color-secondary: #924a28;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ffa278;
+  --color-on-secondary-container: #783615;
+  --color-secondary-fixed: #ffdbcd;
+  --color-secondary-fixed-dim: #ffb596;
+  --color-on-secondary-fixed: #360f00;
+  --color-on-secondary-fixed-variant: #753413;
+
+  /* Tertiary */
+  --color-tertiary: #605f54;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #969387;
+  --color-on-tertiary-container: #2d2c23;
+  --color-tertiary-fixed: #e6e2d4;
+  --color-tertiary-fixed-dim: #cac6b9;
+  --color-on-tertiary-fixed: #1d1c13;
+  --color-on-tertiary-fixed-variant: #48473d;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Surface */
+  --color-surface: #fbf9f5;
+  --color-on-surface: #1b1c1a;
+  --color-surface-variant: #e4e2de;
+  --color-on-surface-variant: #46483c;
+  --color-surface-dim: #dbdad6;
+  --color-surface-bright: #fbf9f5;
+  --color-surface-container: #efeeea;
+  --color-surface-container-low: #f5f3ef;
+  --color-surface-container-high: #eae8e4;
+  --color-surface-container-highest: #e4e2de;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-tint: #56642b;
+
+  /* Background */
+  --color-background: #fbf9f5;
+  --color-on-background: #1b1c1a;
+
+  /* Outline */
+  --color-outline: #76786b;
+  --color-outline-variant: #c6c8b8;
+
+  /* Inverse */
+  --color-inverse-surface: #30312e;
+  --color-inverse-on-surface: #f2f0ed;
+  --color-inverse-primary: #bdce89;
+
+  /* ── Spacing ── */
+  --spacing-unit: 8px;
+  --spacing-gutter: 16px;
+  --spacing-stack-sm: 12px;
+  --spacing-stack-md: 24px;
+  --spacing-stack-lg: 48px;
+  --spacing-container-padding: 24px;
+
+  /* ── Border Radius ── */
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* ── Font Families ── */
+  --font-display: "Quicksand", sans-serif;
+  --font-headline-lg: "Quicksand", sans-serif;
+  --font-headline-lg-mobile: "Quicksand", sans-serif;
+  --font-headline-md: "Quicksand", sans-serif;
+  --font-headline-sm: "Quicksand", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+
+  /* ── Font Sizes ── */
+  --font-size-display: 40px;
+  --font-size-display--line-height: 1.2;
+  --font-size-display--letter-spacing: -0.02em;
+
+  --font-size-headline-lg: 32px;
+  --font-size-headline-lg--line-height: 1.3;
+
+  --font-size-headline-lg-mobile: 28px;
+  --font-size-headline-lg-mobile--line-height: 1.3;
+
+  --font-size-headline-md: 24px;
+  --font-size-headline-md--line-height: 1.4;
+
+  --font-size-headline-sm: 20px;
+  --font-size-headline-sm--line-height: 1.4;
+
+  --font-size-body-lg: 18px;
+  --font-size-body-lg--line-height: 1.6;
+
+  --font-size-body-md: 16px;
+  --font-size-body-md--line-height: 1.6;
+
+  --font-size-body-sm: 14px;
+  --font-size-body-sm--line-height: 1.5;
+
+  --font-size-label-caps: 12px;
+  --font-size-label-caps--line-height: 1;
+  --font-size-label-caps--letter-spacing: 0.05em;
+}
+
+/* ─── Font Weight Bindings ─────────────────────────────────────── */
+
+.font-display {
+  font-weight: 700;
+}
+.font-headline-lg,
+.font-headline-lg-mobile,
+.font-headline-md,
+.font-headline-sm {
+  font-weight: 600;
+}
+.font-label-caps {
+  font-weight: 600;
+}
+
+/* ─── Custom Component Styles ──────────────────────────────────── */
+
+.squish-effect {
+  transition: transform 0.15s ease;
+}
+.squish-effect:active {
+  transform: scale(0.98);
+}
+
+.squish-press {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.squish-press:active {
+  transform: scale(0.97);
+}
+
+.ghost-border {
+  border: 1px solid rgba(70, 72, 60, 0.1);
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 25px -5px rgba(86, 100, 43, 0.08),
+    0 8px 10px -6px rgba(86, 100, 43, 0.04);
+}
+
+.card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(86, 100, 43, 0.06),
+    0 2px 6px -1px rgba(86, 100, 43, 0.03);
+}
+
+/* ─── Decorative Blobs ─────────────────────────────────────────── */
+
+.blob-bg {
+  position: absolute;
+  background: linear-gradient(
+    135deg,
+    rgba(138, 154, 91, 0.05) 0%,
+    rgba(138, 154, 91, 0.1) 100%
+  );
+  filter: blur(40px);
+  z-index: -1;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: morph 12s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  34% {
+    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+  }
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+  }
+}
+
+/* ─── Chat Styles ──────────────────────────────────────────────── */
+
+.chat-bubble-ai {
+  border-radius: 24px 24px 24px 4px;
+}
+.chat-bubble-user {
+  border-radius: 24px 24px 4px 24px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Safe Area ────────────────────────────────────────────────── */
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
