@@ -18,14 +18,13 @@ from firebase_admin import credentials, db
 DATABASE_URL = "https://groot-39462-default-rtdb.asia-southeast1.firebasedatabase.app"
 CRED_FILE = "firebase_credentials.json"
 
-# Threshold logic for get_status(). Tuned for common houseplants; adjust
-# once sensor_reader.py is calibrated against real dry/wet readings.
+# Threshold logic shared with main.py's decide_status().
 MOISTURE_LOW = 20        # <20  -> NEEDS WATER  (catches the dry band 15-17)
 MOISTURE_HIGH = 50       # >50  -> TOO WET      (catches the wet band 65-70;
                          #                       healthy band 40-45 sits in between)
 WATER_LEVEL_LOW = 20
-TEMP_LOW = 17            # <17 (i.e. 0-16) -> TOO COLD
-TEMP_HIGH = 31           # >31 (i.e. 32+)  -> TOO HOT
+TEMP_LOW = 18            # <18 (i.e. 0-17) -> TOO COLD
+TEMP_HIGH = 28           # >28 (i.e. 29+)  -> TOO HOT
 HUMIDITY_LOW = 40
 HUMIDITY_HIGH = 60
 
@@ -60,12 +59,11 @@ def push_reading(reading):
     """Write the latest reading to 'current' (overwritten) and append it
     to 'history' (append-only log).
 
-    Accepts the same dict main.py builds:
+    Accepts the dict main.py builds:
         {"moisture", "temperature", "humidity", "water_level",
-         "status", "ok", "timestamp", ...}
-
-    Extra keys are written through unchanged; missing sensors come in
-    as None and are stored as None so the dashboard can grey them out.
+         "status", "timestamp", ...}
+    Missing sensors come in as None and are stored as None so the
+    dashboard can grey them out.
     """
     moisture    = reading.get("moisture")
     temperature = reading.get("temperature")
@@ -82,7 +80,7 @@ def push_reading(reading):
         "status":      fb_status,            # "green" / "red" for dashboard
         "timestamp":   datetime.now(timezone.utc).isoformat(),
     }
-    # Passthrough of any extra fields main.py attached (e.g. LCD status).
+    # Passthrough of any extra fields main.py attached (e.g. LCD status string).
     for k, v in reading.items():
         if k not in payload:
             payload[k] = v
@@ -105,8 +103,6 @@ def seed_fake_history(days, readings_per_day):
     total = days * readings_per_day
     interval = timedelta(days=days) / total
 
-    # Slow-drifting baseline so consecutive readings look continuous
-    # rather than pure noise, with the occasional bad reading mixed in.
     moisture = random.uniform(45, 60)
     water_level = random.uniform(50, 80)
     temp = random.uniform(21, 24)
@@ -160,9 +156,6 @@ def get_baseline(sample_size):
 if __name__ == "__main__":
     init_firebase()
     print("Firebase initialized.")
-
-    seed_fake_history(days=7, readings_per_day=24)
-    print("Seeded 7 days of fake history.")
 
     reading = push_reading({
         "moisture": 42, "temperature": 23.5, "humidity": 48, "water_level": 65,
