@@ -11,5 +11,5 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
+const app = firebaseConfig.databaseURL ? initializeApp(firebaseConfig) : null;
+export const db = app ? getDatabase(app) : null;

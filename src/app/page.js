@@ -33,6 +33,7 @@ export default function Dashboard() {
   const [selectedMetric, setSelectedMetric] = useState("moisture");
 
   useEffect(() => {
+    if (!db) return;
     const historyRef = ref(db, "history");
     const unsubscribe = onValue(
       historyRef,
@@ -118,7 +119,7 @@ export default function Dashboard() {
 
   const prevScoreRef = useRef(null);
   useEffect(() => {
-    if (!isLivePlant || prevScoreRef.current === grootScore) return;
+    if (!db || !isLivePlant || prevScoreRef.current === grootScore) return;
     prevScoreRef.current = grootScore;
     set(ref(db, "current/grootScore"), grootScore).catch(() => {});
   }, [grootScore, isLivePlant]);

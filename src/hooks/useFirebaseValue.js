@@ -8,6 +8,7 @@ export function useFirebaseValue(path, fallback) {
   const [value, setValue] = useState(fallback);
 
   useEffect(() => {
+    if (!db) return;
     const unsubscribe = onValue(
       ref(db, path),
       (snapshot) => {
