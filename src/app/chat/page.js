@@ -52,6 +52,14 @@ export default function ChatPage() {
   const handleSend = useCallback(async (text) => {
     const msg = typeof text === "string" ? text : inputText;
     if (!msg.trim() || isLoading) return;
+
+    if (msg.trim().toLowerCase() === "admin:clear") {
+      setMessages([]);
+      localStorage.removeItem("groot-chat");
+      setInputText("");
+      return;
+    }
+
     setInputText("");
     if (textareaRef.current) textareaRef.current.style.height = "auto";
 
