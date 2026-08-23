@@ -312,7 +312,7 @@ export default function Dashboard() {
                 }}
               />
 
-              <div className="relative z-10">
+              <div className="relative z-20">
                 <div className="flex items-center justify-between">
                   <span className="font-body-sm text-xs font-semibold tracking-wider uppercase text-on-surface-variant flex items-center gap-1.5">
                     GROOT SCORE
@@ -321,7 +321,7 @@ export default function Dashboard() {
                     </button>
                   </span>
                   {showScoreHelp && (
-                    <div className="absolute top-16 left-4 right-4 z-40 bg-inverse-surface text-inverse-on-surface text-xs font-body-sm p-3 rounded-xl shadow-lg leading-relaxed">
+                    <div className="absolute top-8 left-0 right-0 z-50 bg-inverse-surface text-inverse-on-surface text-xs font-body-sm p-3 rounded-xl shadow-lg leading-relaxed">
                       An overall health score (0-100) combining soil moisture (40%), temperature (20%), humidity (20%), and base vitality (20%). Helps you quickly see if your plant needs attention.
                     </div>
                   )}
