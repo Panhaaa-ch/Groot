@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 
 const SYSTEM_PROMPT = `
@@ -43,8 +43,7 @@ export async function POST(req) {
     return Response.json({ error: "message required" }, { status: 400 });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     const fallback = FALLBACK_LINES[Math.floor(Math.random() * FALLBACK_LINES.length)];
     return Response.json({ reply: fallback });
   }
@@ -72,9 +71,8 @@ export async function POST(req) {
     .join("\n");
 
   try {
-    const google = createGoogleGenerativeAI({ apiKey });
     const { text } = await generateText({
-      model: google("gemini-3.5-flash"),
+      model: google("gemini-3.6-flash"),
       system: SYSTEM_PROMPT,
       prompt,
     });
